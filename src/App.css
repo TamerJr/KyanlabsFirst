@@ -1,0 +1,14 @@
+.App{
+    background-color: rgb(40, 42, 66);
+    height: 100vh;
+    color: aliceblue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+body{
+    margin: 0;
+}
+select{
+    outline: none;
+}

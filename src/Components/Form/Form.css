@@ -1,0 +1,53 @@
+form{
+    background-color: #fff;
+    position: absolute;
+    height: 100%;
+    width: 300px;
+    top:0;
+    right: 0;
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 5rem;
+    gap: 2rem;
+    align-items: center;
+
+    flex-direction: column;
+    color: #000000;
+}
+select{
+    width :100px;
+}
+.Form-Section{
+    padding-top:4rem;
+}
+input{
+    outline: none;
+    padding: 5px 10px;
+}
+form p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+form button {
+    padding: .5rem 2rem;
+    cursor: pointer;
+    font-weight: bolder;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #2db3c5;
+}
+.AddNew{
+    background-color: #305c6e;
+    float: left;
+    border: 1px solid white;
+    color: aliceblue;
+    padding: .5rem 2rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    
+}

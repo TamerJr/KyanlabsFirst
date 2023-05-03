@@ -1,4 +1,4 @@
-form{
+form.ServiceForm{
     background-color: #fff;
     position: absolute;
     height: 100%;
@@ -7,15 +7,33 @@ form{
     right: 0;
     display: flex;
     justify-content: flex-start;
-    padding-top: 5rem;
     gap: 2rem;
     align-items: center;
-
+    overflow-y:scroll;
     flex-direction: column;
     color: #000000;
 }
+.ProdFormButton{
+    border: 1px solid white;
+    color: aliceblue;
+    position: relative;
+    left: 25%;
+    bottom:10px;
+    padding: .5rem .5rem;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+        background-color: #2db3c596;
+
+}
 select{
-    width :100px;
+    width :150px;
+    opacity: .7;
+    background-color: #c7bebe50;
+    height: 25px;
+    border-radius: 5px;
+}
+option{
+    border-radius: 15px;
 }
 .Form-Section{
     padding-top:4rem;
@@ -40,6 +58,7 @@ form button {
     border-radius: 10px;
     color: white;
     background-color: #2db3c5;
+
 }
 .AddNew{
     background-color: #305c6e;
@@ -50,4 +69,8 @@ form button {
     margin-bottom: 1rem;
     cursor: pointer;
     
+}
+.SaveServices{
+    position:relative ;
+    bottom: 10px;
 }

@@ -12,3 +12,6 @@ body{
 select{
     outline: none;
 }
+.AddNew{
+    border-radius: 5px;
+}

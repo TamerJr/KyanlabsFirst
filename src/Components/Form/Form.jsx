@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import {AiFillCloseCircle} from "react-icons/ai"
-import Types from "../../docs.json"
+import { AiFillCloseCircle } from "react-icons/ai";
+import Types from "../../docs.json";
 import "./Form.css";
-const Form = ({ data, setData ,formHandler }) => {
+import ProductForms from "../ProductForms/ProductForms";
+const Form = ({ data, setData, formHandler }) => {
   const date = new Date();
   const currentDate = `${date.getDay()} - ${date.getMonth()} - ${date.getFullYear()}`;
   const [eleData, setEleData] = useState({
@@ -10,40 +11,43 @@ const Form = ({ data, setData ,formHandler }) => {
     amount: null,
     type: "",
     date: currentDate,
+    products: {},
   });
+  const [formCount, setFormCount] = useState(0);
+
+  const addForm = () => {
+    setFormCount(formCount + 1);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setData([...data, eleData]);
   };
-  localStorage.setItem("myData",JSON.stringify(data))
+  localStorage.setItem("myData", JSON.stringify(data));
   return (
-    
-    <form onSubmit={handleSubmit}>
-      <p onClick={formHandler}><AiFillCloseCircle/></p>
+    <form onSubmit={handleSubmit} className="ServiceForm">
+      <p onClick={formHandler}>
+        <AiFillCloseCircle size={25} color="gray" />
+      </p>
       <p>
         <label> Select Type</label>
-        <select required
+        <select
+          required
           className="selectType"
           onChange={(e) =>
             setEleData((eleData) => ({ ...eleData, type: e.target.value }))
           }
         >
-          <option disabled>{"     "}</option>
-          {
-            Types.map(type=>
-
-              <option>{type?.type}</option>
-            
-              
-              )
-          }
-          
+          <option> ----</option>
+          {Types.map((type) => (
+            <option key={type?.type}>{type?.type}</option>
+          ))}
         </select>
       </p>
-      <p><label>
-        Product Name
-        </label> 
-        <input  required
+      <p>
+        <label>Product Name</label>
+        <input
+          required
           type="search"
           onChange={(e) =>
             setEleData((eleData) => ({ ...eleData, name: e.target.value }))
@@ -51,10 +55,11 @@ const Form = ({ data, setData ,formHandler }) => {
           placeholder="Enter Product Name"
         />
       </p>
-      <p> <label>
-        Product Amount
-      </label>
-        <input   required
+      <p>
+        {" "}
+        <label>Product Amount</label>
+        <input
+          required
           type="number"
           onChange={(e) =>
             setEleData((eleData) => ({ ...eleData, amount: e.target.value }))
@@ -62,7 +67,23 @@ const Form = ({ data, setData ,formHandler }) => {
           placeholder="Amount"
         />
       </p>
-      <button type="submit">ADD</button>
+      {/* Product form and form of it */}
+      <div>
+        <ProductForms
+          formCount={formCount}
+          setFormCount={setFormCount}
+          eleDate={eleData}
+          setEleData={setEleData}
+        />
+        <button type="button" onClick={addForm} className="ProdFormButton">
+          Add Product
+        </button>
+      </div>
+      {/* End */}
+
+      <button type="submit" className="SaveServices">
+        ADD
+      </button>
     </form>
   );
 };

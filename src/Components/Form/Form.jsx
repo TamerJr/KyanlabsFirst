@@ -11,7 +11,7 @@ const Form = ({ data, setData, formHandler }) => {
     amount: null,
     type: "",
     date: currentDate,
-    products: {},
+    products: [],
   });
   const [formCount, setFormCount] = useState(0);
 
@@ -39,8 +39,8 @@ const Form = ({ data, setData, formHandler }) => {
           }
         >
           <option> ----</option>
-          {Types.map((type) => (
-            <option key={type?.type}>{type?.type}</option>
+          {Types[0]?.types?.map((types) => (
+            <option key={types?.type}>{types?.type}</option>
           ))}
         </select>
       </p>
@@ -72,7 +72,7 @@ const Form = ({ data, setData, formHandler }) => {
         <ProductForms
           formCount={formCount}
           setFormCount={setFormCount}
-          eleDate={eleData}
+          eleData={eleData}
           setEleData={setEleData}
         />
         <button type="button" onClick={addForm} className="ProdFormButton">

@@ -12,7 +12,7 @@ const ProductForms = ({ formCount, eleData, setEleData ,setFormCount }) => {
             <div>
               <FormProduct
                 ProdNum={i}
-                eleDate={eleData}
+                eleData={eleData}
                 setEleData={setEleData}
                 FormList={forms}
                 formCount={formCount}
@@ -23,7 +23,6 @@ const ProductForms = ({ formCount, eleData, setEleData ,setFormCount }) => {
           </Fragment>
         );
       }
-      console.log(forms)
       setMainFormsList(forms)
     };
     dataLogic()

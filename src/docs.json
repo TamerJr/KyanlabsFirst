@@ -1,15 +1,26 @@
 [
-
-    {"type":"prod type 1"
-},
-    {"type":"prod type 2"
-},
-    {"type":"prod type 4"
-},
-    {"type":"prod type 5"
-},
-    {"type":"prod type 6"
-},
-    {"type":"prod type 7"}
-
+  {
+    "types": [
+      { "type": "service type 1" },
+      { "type": "service type 2" },
+      { "type": "service type 4" },
+      { "type": "service type 5" },
+      { "type": "service type 6" },
+      { "type": "service type 7" }
+    ]
+  },
+  {
+    "products": [
+      { "product": "prod1" },
+      { "product": "aprod2" },
+      { "product": "prod3" },
+      { "product": "cprod4" },
+      { "product": "dprod5" },
+      { "product": "kprod6" },
+      { "product": "eprod7" },
+      { "product": "fprod8" },
+      { "product": "gprod9" },
+      { "product": "hprod10" }
+    ]
+  }
 ]

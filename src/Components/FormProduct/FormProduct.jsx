@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./FormProduct.css";
+import Types from "../../docs.json";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 const FormProduct = ({
   ProdNum,
@@ -8,57 +9,62 @@ const FormProduct = ({
   setFormCount,
   setMainFormsList,
   formCount,
+  eleData,
 }) => {
-  const handleDeleteElement = (deleteElement) => {
-    console.log(deleteElement);
-    FormList = FormList.filter((ele, index) => index != deleteElement);
-    console.log(FormList);
-    setFormCount(formCount - 1);
-    setMainFormsList([...FormList]);
-  };
+  let tempProducts = eleData.products;
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedEle, SetSelectedEle] = useState("");
+  const [prodQuantity, setProdQuantity] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
-  const data = [
-    { name: "John", age: 30 },
-    { name: "Jane", age: 25 },
-    { name: "Bob", age: 40 },
-  ];
+  const data = Types[1]?.products;
+
+  const handleDeleteElement = (deleteElement) => {
+    
+    
+    let x=eleData.products.filter((ele ,index)=> index !=deleteElement)
+    console.log(x)
+    setEleData(eleData=>({ ...eleData ,products:[...x]}))
+    FormList = FormList.filter((ele, index) => index != deleteElement);
+    setFormCount(formCount - 1);
+    setMainFormsList([...FormList]);
+  };
 
   const performSearch = () => {
     let result = [];
     if (searchTerm) {
       result = data.filter((item) =>
-        item?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+        item?.product?.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      console.log(result);
       setSearchResults(result);
     } else {
       result = [];
       setSearchResults(result);
     }
   };
-
   useEffect(() => {
     performSearch();
     const addProduct = () => {
-        if(searchTerm != ""){
-
-            setEleData((eleData) => ({
-                ...eleData,
-                products: { ...eleData.products, [`prod_${ProdNum + 1}`]: searchTerm },
-            }));
-        }
+      if (searchTerm != "") {
+        setEleData((eleData) => ({
+          ...eleData,
+          products: [
+            ...tempProducts,
+            {
+              [`prod_${ProdNum + 1}`]: searchTerm,
+              [`prod_${ProdNum + 1}_Quantity`]: prodQuantity,
+            },
+          ],
+        }));
+      }
     };
     addProduct();
-  }, [searchTerm]);
+  }, [searchTerm, prodQuantity]);
   const handleSelect = (e) => {
     SetSelectedEle(e);
     setSearchTerm(e);
     console.log(selectedEle);
   };
-  console.log(searchTerm);
 
   return (
     <div className="FormRenders">
@@ -67,7 +73,7 @@ const FormProduct = ({
         <p className="deleteElement">
           <span onClick={() => handleDeleteElement(ProdNum)}>
             {" "}
-            <AiOutlineCloseCircle  size={20} color="gray"/>
+            <AiOutlineCloseCircle size={20} color="gray" />
           </span>
         </p>
         <div className="eleInput">
@@ -87,8 +93,11 @@ const FormProduct = ({
                 <div className="searchTerm">
                   <ul>
                     {searchResults.map((ele, index) => (
-                      <li key={ele.name} onClick={() => handleSelect(ele.name)}>
-                        {ele.name}
+                      <li
+                        key={ele.product}
+                        onClick={() => handleSelect(ele.product)}
+                      >
+                        {ele.product}
                       </li>
                     ))}
                   </ul>
@@ -104,15 +113,7 @@ const FormProduct = ({
             type="number"
             id={`input2-${ProdNum + 1}`}
             name={`input2-${ProdNum + 1}`}
-            onChange={(e) => {
-              setEleData((eleData) => ({
-                ...eleData,
-                products: {
-                  ...eleData.products,
-                  [`prod_${ProdNum + 1}_Quantity`]: e.target.value,
-                },
-              }));
-            }}
+            onChange={(e) => setProdQuantity(e.target.value)}
             placeholder="Product Quantity"
           />
         </div>

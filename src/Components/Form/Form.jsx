@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Types from "../../docs.json";
 import "./Form.css";
-import ProductForms from "../ProductForms/ProductForms";
-const Form = ({ data, setData, formHandler }) => {
+import ProductForms from "../ProductForm/ProductForm";
+const Form = ({ data, setData, formHandler, addForm ,forms,setForms}) => {
   const date = new Date();
   const currentDate = `${date.getDay()} - ${date.getMonth()} - ${date.getFullYear()}`;
   const [eleData, setEleData] = useState({
@@ -13,17 +13,14 @@ const Form = ({ data, setData, formHandler }) => {
     date: currentDate,
     products: [],
   });
-  const [formCount, setFormCount] = useState(0);
-
-  const addForm = () => {
-    setFormCount(formCount + 1);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    let tempData=eleData;
+    tempData.products=forms
+    setEleData(tempData)
     setData([...data, eleData]);
+    
   };
-  console.log(data);
   localStorage.setItem("myData", JSON.stringify(data));
   return (
     <form onSubmit={handleSubmit} className="ServiceForm">
@@ -69,13 +66,8 @@ const Form = ({ data, setData, formHandler }) => {
         />
       </p>
       {/* Product form and form of it */}
-      <div>
-        <ProductForms
-          formCount={formCount}
-          setFormCount={setFormCount}
-          eleData={eleData}
-          setEleData={setEleData}
-        />
+      <div> 
+        <ProductForms  forms={forms} setForms={setForms} />
         <button type="button" onClick={addForm} className="ProdFormButton">
           Add Product
         </button>

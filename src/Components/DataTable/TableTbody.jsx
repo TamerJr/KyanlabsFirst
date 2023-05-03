@@ -76,8 +76,8 @@ const TableTbody = ({ data, setData, ele, indx }) => {
               <option value="" disabled>
                 ------
               </option>
-              {Types.map((type) => (
-                <option>{type?.type}</option>
+              {Types[0]?.types?.map((type) => (
+                <option key={type?.type}>{type?.type}</option>
               ))}
             </select>
           ) : (

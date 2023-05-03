@@ -9,14 +9,27 @@ function App() {
   );
 
   const [form, setForm] = useState(false);
+  const [forms, setForms] = useState([]);
   const FormHandler = () => {
     setForm(!form);
+  };
+  const addForm = () => {
+    setForms([...forms, { ProductName: "", ProductName: "" }]);
   };
   localStorage.setItem("myData", JSON.stringify(data));
   return (
     <div className="App">
       <DataTable formHandler={FormHandler} data={data} setData={setData} />
-      {form && <Form data={data} formHandler={FormHandler} setData={setData} />}
+      {form && (
+        <Form
+          addForm={addForm}
+          forms={forms}
+          setForms={setForms}
+          data={data}
+          formHandler={FormHandler}
+          setData={setData}
+        />
+      )}
     </div>
   );
 }

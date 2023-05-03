@@ -1,0 +1,43 @@
+.Deleter {
+  color: black;
+  padding: none;
+  background-color: inherit;
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  text-align: center;
+  opacity: 0.4;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.FieldSetNestedForm {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid  rgb(26, 18, 18,.25) ;
+}
+.SearchTermDataList{
+  position: absolute;
+  background-color: #fff;
+  width: 200px;
+  top:110px;z-index: 20;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.219);
+  border-radius: 15px;
+}
+.SearchTermDataList ul{
+  list-style: none;
+  padding-left: 0;
+}
+.SearchTermDataList ul li:hover{
+  background-color: #c2b8b844;
+  cursor: pointer;
+}

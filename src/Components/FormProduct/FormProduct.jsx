@@ -18,13 +18,11 @@ const FormProduct = ({
   const [prodQuantity, setProdQuantity] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const data = Types[1]?.products;
-
   const handleDeleteElement = (deleteElement) => {
-    
-    
-    let x=eleData.products.filter((ele ,index)=> index !=deleteElement)
-    console.log(x)
-    setEleData(eleData=>({ ...eleData ,products:[...x]}))
+    let tempArr = eleData.products.filter(
+      (ele, index) => index != deleteElement
+    );
+    setEleData((eleData) => ({ ...eleData, products: [...tempArr] }));
     FormList = FormList.filter((ele, index) => index != deleteElement);
     setFormCount(formCount - 1);
     setMainFormsList([...FormList]);
@@ -63,7 +61,6 @@ const FormProduct = ({
   const handleSelect = (e) => {
     SetSelectedEle(e);
     setSearchTerm(e);
-    console.log(selectedEle);
   };
 
   return (

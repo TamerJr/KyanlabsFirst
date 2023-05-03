@@ -23,6 +23,7 @@ const Form = ({ data, setData, formHandler }) => {
     e.preventDefault();
     setData([...data, eleData]);
   };
+  console.log(data);
   localStorage.setItem("myData", JSON.stringify(data));
   return (
     <form onSubmit={handleSubmit} className="ServiceForm">

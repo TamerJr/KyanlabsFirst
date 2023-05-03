@@ -1,5 +1,6 @@
 tr {
   border: 1px solid black;
+
 }
 .Form-Section {
   width: 80%;
@@ -29,6 +30,7 @@ table {
   border-radius: 10px;
 }
 thead {
-  background-color: #ffffff31;
+  background-color: #7a737331;
+
 }
 

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Types from "../../docs.json";
 
 const SearchTerm = ({ index, forms, setForms, form }) => {
   let products = Types[1]?.products;
   const [searchField, setSearchField] = useState( []);
+  const [searchTerm,setSearchTerm]=useState("")
   const deleteForm = (index) => {
     setForms(forms.filter((_, i) => i !== index));
   };
@@ -11,11 +12,15 @@ const SearchTerm = ({ index, forms, setForms, form }) => {
     setForms(
       forms.map((form, i) => {
         if (i === index) {
-          if (field === "ProductName" &&value !=0) {
-            let dataFilter = products.filter((ele) =>
-              ele.product.toLowerCase().includes(value.toLowerCase())
-            );
-            setSearchField(dataFilter);
+          if (field === "ProductName" ) {
+            if(value===""){
+              setSearchTerm("")
+            }
+             setSearchTerm(value)
+            // let dataFilter = products.filter((ele) =>
+            //   ele.product.toLowerCase().includes(searchTerm.toLowerCase())
+            // );
+            // setSearchField(dataFilter);
             return { ...form, [field]: value };
           } else {
             return { ...form, [field]: value };
@@ -25,11 +30,29 @@ const SearchTerm = ({ index, forms, setForms, form }) => {
       })
     );
   };
+  const performSearch = () => {
+    let result = [];
+    if (searchTerm != "") {
+      result = products.filter((item) =>
+        item?.product?.toLowerCase().includes(searchTerm.toLowerCase())
+        ); 
+      } else {
+        result = [];
+      }
+      console.log(result)
+      setSearchField(result);
+  };
+  useEffect(()=>{
+   
+    performSearch()
+    console.log(searchTerm)
+  },[searchTerm])
   const handleData=(e)=>{
     console.log(e)
     forms[index].ProductName=e
     setSearchField([])
   }
+
   return (
     <div>
       {" "}
@@ -55,7 +78,7 @@ const SearchTerm = ({ index, forms, setForms, form }) => {
               }
             />
           </p>
-          { searchField.length >1&&
+          { searchField.length >0&&
 
               <div className="SearchTermDataList">
                 <ul>
